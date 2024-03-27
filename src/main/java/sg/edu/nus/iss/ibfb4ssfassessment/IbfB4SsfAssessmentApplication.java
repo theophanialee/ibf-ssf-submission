@@ -28,7 +28,7 @@ public class IbfB4SsfAssessmentApplication implements CommandLineRunner  {
 	@Override
 	public void run(String... args) throws Exception {
 
-		List<Movie> movieList = fileSvc.readFile("movies.json");
+		List<Movie> movieList = fileSvc.readFile("src/main/resources/static/movies.json");
 		
 		for (Movie movie : movieList) {
 			dbSvc.saveRecord(movie);
