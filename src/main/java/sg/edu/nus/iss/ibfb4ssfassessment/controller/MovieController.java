@@ -20,7 +20,6 @@ import jakarta.servlet.http.HttpSession;
 import sg.edu.nus.iss.ibfb4ssfassessment.model.Movie;
 import sg.edu.nus.iss.ibfb4ssfassessment.service.DatabaseService;
 
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -40,7 +39,7 @@ public class MovieController {
     
          List<Movie> movieList = dbSvc.getAllMovies();
          model.addAttribute("movieList", movieList);
-         System.out.println(movieList);
+        //  System.out.println(movieList);
 
         return "listing";
     }
@@ -54,7 +53,7 @@ public class MovieController {
             return "redirect:/login";
         }
 
-        System.out.println(sess.getAttribute("birthDate"));
+        // System.out.println(sess.getAttribute("birthDate"));
         String bdStr = sess.getAttribute("birthDate").toString();
         SimpleDateFormat dueDateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
         Date birthDate = dueDateFormat.parse(bdStr);
@@ -65,15 +64,15 @@ public class MovieController {
         String rating = movie.getRated();
 
         if (rating.equals("PG-13") && age < 13){
-            return "underaged";
+            return "errPG13";
         }
 
         if (rating.equals("R") && age < 18){
-            return "underaged";
+            return "errrated";
         }
 
         // Add booking
-        System.out.println("Booking for:  " + movie);
+        // System.out.println("Booking for:  " + movie);
         dbSvc.addCount(movie);
 
         model.addAttribute("movietitle", movie.getTitle());
@@ -88,9 +87,9 @@ public class MovieController {
        LocalDate bdayLocal = birthDate.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
-                System.out.println("Bday local date: " + bdayLocal);
+        // System.out.println("Bday local date: " + bdayLocal);
         LocalDate currentDate = LocalDate.now();
-        System.out.println("Bday local date: " + currentDate);
+        // System.out.println("Bday local date: " + currentDate);
 
         Period period = Period.between(currentDate, bdayLocal);
         int age = Math.abs(period.getYears());

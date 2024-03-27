@@ -10,12 +10,11 @@
 <table>
 <tr>
     <td><h1>List of Movies</h1></td>
-        <td><a class="btn btn-danger">Logout</a></td>
+        <td><a style="margin: 50px" class="btn btn-danger" href="/logout">Logout</a></td>
         <td>
-            <div th:obeject="${user}">
-                Logged in as:
-                <br>
-                Email: <span th:text="${user.email}"></span> Birthdate: <span th:text="${user.birthDate}"></span>
+            <div style="margin: 50px" th:obeject="${user}">
+                Logged in as: <span th:text="${user.email}"></span>  
+                <!-- <span th:text="${user.birthDate}"></span> -->
             </div>
         </td>
     </tr>
@@ -44,7 +43,7 @@
         <td th:text="${movie.genre}"></td>
         <td th:text="${movie.director}"></td>
         <td th:text="${movie.rating}"></td>
-        <td><a class="btn btn-secondary" th:href="@{/list/book/{id}(id=${movie.id})}">Book</a></td>
+        <td><a class="btn btn-warning" th:href="@{/list/book/{id}(id=${movie.id})}">Book</a></td>
     </tr>
 </table>
    

@@ -28,15 +28,14 @@ public record FileService() {
         List<Movie> movieList = new ArrayList<>();
 
          String jsonContent = new String(Files.readAllBytes(Paths.get(fileName)));
-         System.out.println("----------------- File content: "+jsonContent);
-
+         
         JsonReader jReader = Json.createReader(new StringReader(jsonContent));
         JsonArray a = jReader.readArray();
 
         for (int i = 0; i < a.size(); i++) {
             JsonObject e = a.get(i).asJsonObject();
 
-            Movie movie = jsonToMovieWithoutDate(e);
+            Movie movie = jsonToMovie(e);
            
             Long epochDate = e.getJsonNumber("Released").longValue();
             Date javaDate = new Date(epochDate);
@@ -47,11 +46,12 @@ public record FileService() {
         }
 
         System.out.println("✅ Task 1: Read movies.json and return List<Movies>");
+        System.out.println(">>>>> File content: "+ movieList);
 
         return movieList;
     }
 
-    public Movie jsonToMovieWithoutDate(JsonObject e){
+    public Movie jsonToMovie(JsonObject e){
         Movie movie = new Movie();
            
         movie.setId(e.getInt("Id"));

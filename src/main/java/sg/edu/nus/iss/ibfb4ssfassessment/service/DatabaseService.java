@@ -48,7 +48,7 @@ FileService fileSvc;
         String movieStr = moviesRepo.getMovieById(movieId);
         Movie movie = strToMovie(movieStr);
 
-        System.out.println(movie);
+        // System.out.println(movie);
         return movie;
     }
 

@@ -27,6 +27,7 @@ public class LoginController {
     public String login(Model model) {
         Login user = new Login();
         model.addAttribute("user", user);
+        
         return "login";
     }
 
@@ -36,7 +37,7 @@ public class LoginController {
         if(result.hasErrors()){
             return "login";
         }
-    
+        // System.out.println(sess);
         sess.setAttribute("user", user);
         sess.setAttribute("email", user.getEmail());
         sess.setAttribute("birthDate", user.getBirthDate());
@@ -47,10 +48,16 @@ public class LoginController {
     
     // For the logout button shown on View 2
     // On logout, session should be cleared
+    @GetMapping("/logout")
     public String logout(HttpSession sess) {
+
         sess.invalidate();
+        System.out.flush();
+
+        // System.out.println(sess);
         return "redirect:/";
     }
+    
     
       
 }

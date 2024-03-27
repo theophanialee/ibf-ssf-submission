@@ -42,12 +42,4 @@ public class MoviesRepo {
         hashOps.put(Util.KEY_MOVIES, Integer.toString(movieId), movieStr);
     }
 
-    // // DELETE operations of a record (in Redis Map)
-    // public void deleteTodo(String id) {
-    //     hashOps = template.opsForHash();
-    //     hashOps.delete(Util.KEY_MOVIES, id);
-    //     System.out.println("deleted");
-    // }
-
-
 }

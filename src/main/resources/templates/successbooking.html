@@ -7,11 +7,15 @@
     <title>Booking success</title>
 </head>
 <body>
-  <h1>Success</h1>
-  <h3>You have successfully booked the movie.</h3>
-  <img>
-    <h3 th:text="${movietitle}"></h3>
-    <a href="/list" class="btn btn-primary">Book another movie</a>
-
+  <div style="margin:50px">
+    <h1> Success ✅ </h1>
+    <hr>
+    <br>
+    <h4>You have successfully booked the movie.</h4>
+    <br>
+      <h4 th:text="${movietitle}"></h4>
+      <a href="/list" class="btn btn-warning" style="margin-top: 20px;">Book another movie</a>
+  </div>
+ 
 </body>
 </html>
