@@ -9,19 +9,28 @@
 <body>
     <h1>Login</h1>
     <form method="POST" action="/login" th:object="${user}">
-    <table>
-        <tr>
-            <td>Email</td>
-            <td><input type="email" size="30" th:field="*{email}"></td>
-        </tr>
-        <tr>
-            <td>Age</td>
-            <td><input type="number" size="30" th:field="*{age}">   <span style="color: red" th:errors="*{age}"></span></td>
-        </tr>
-        <tr>
-            <td><button type="submit" class="btn btn-primary">Login</button></td>
-        </tr>
-         
+        <table>
+            <tr>
+                <td>Email address </td>
+                <td><input type="text" size="30" th:field="*{email}"></td>
+            </tr>
+            
+            <tr>
+                <td></td>
+                <td>We'll never share your email with anyone else.</td>
+                <td><div class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div></td>
+            </tr>
+            
+            <tr>
+                <td>Birth date</td>
+                <td><input type="date" size="30" th:field="*{birthDate}"> </td> 
+                <td><div class="alert alert-danger" th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></div></td>
+            </tr>
+        
+            <tr>
+                <td></td>
+                <td><button type="submit" class="btn btn-primary">Login</button></td>
+            </tr>
         </table>
     </form>
 </body>

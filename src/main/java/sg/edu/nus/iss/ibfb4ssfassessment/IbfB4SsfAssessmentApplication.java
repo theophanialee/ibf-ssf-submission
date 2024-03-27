@@ -33,13 +33,13 @@ public class IbfB4SsfAssessmentApplication implements CommandLineRunner  {
 		for (Movie movie : movieList) {
 			dbSvc.saveRecord(movie);
 		}
-		System.out.println("✅ Task 2: saved record in Redis");
+		// System.out.println("✅ Task 2: saved record in Redis");
 	
-		System.out.println("✅ Task 3: Events size: " + dbSvc.getNumberOfEvents());
+		// System.out.println("✅ Task 3: Events size: " + dbSvc.getNumberOfEvents());
 
-		System.out.println("✅ Task 4: getById eg 12336" + dbSvc.getMovieById(12336));
+		// System.out.println("✅ Task 4: getById eg 12336" + dbSvc.getMovieById(12336));
 
-		System.out.println("✅ Task 4: getAllMovies" + dbSvc.getAllMovies());
+		// System.out.println("✅ Task 4: getAllMovies" + dbSvc.getAllMovies());
 
 	}
 }

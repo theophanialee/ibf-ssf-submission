@@ -9,31 +9,48 @@ import jakarta.validation.Valid;
 import sg.edu.nus.iss.ibfb4ssfassessment.model.Login;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class LoginController {
-    
 
-
+    @GetMapping("/")
+    public String getIndex() {
+        return "index";
+    }
+   
     // TODO: Task 6
-    public String login() {
-
-        return "";
+    @GetMapping("/login")
+    public String login(Model model) {
+        Login user = new Login();
+        model.addAttribute("user", user);
+        return "login";
     }
 
     // TODO: Task 7
-    public String processlogin() {
-        
-        return "";
-
-    }
+    @PostMapping("/login")
+    public String processlogin(HttpSession sess, @Valid @ModelAttribute("user") Login user, BindingResult result) {
+        if(result.hasErrors()){
+            return "login";
+        }
     
+        sess.setAttribute("user", user);
+        sess.setAttribute("email", user.getEmail());
+        sess.setAttribute("birthDate", user.getBirthDate());
 
+        return "successlogin";
+    }
+  
+    
     // For the logout button shown on View 2
     // On logout, session should be cleared
-    public String logout() {
-
-        return "";
+    public String logout(HttpSession sess) {
+        sess.invalidate();
+        return "redirect:/";
     }
     
+      
 }

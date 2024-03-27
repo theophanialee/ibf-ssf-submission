@@ -7,6 +7,47 @@
     <title>Movies</title>
 </head>
 <body>
-    
+<table>
+<tr>
+    <td><h1>List of Movies</h1></td>
+        <td><a class="btn btn-danger">Logout</a></td>
+        <td>
+            <div th:obeject="${user}">
+                Logged in as:
+                <br>
+                Email: <span th:text="${user.email}"></span> Birthdate: <span th:text="${user.birthDate}"></span>
+            </div>
+        </td>
+    </tr>
+</table>
+   
+<table class="table table-striped">
+    <tr>
+        <th>Movie Id</th>
+        <th>Moview Title</th>
+        <th>Movie Year</th>
+        <th>Rated</th>
+        <th>Released on</th>
+        <th>Runtime</th>
+        <th>Genre</th>
+        <th>Director</th>
+        <th>Rating</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="movie: ${movieList}">
+        <td th:text="${movie.id}"></td>
+        <td th:text="${movie.title}"></td>
+        <td th:text="${movie.year}"></td>
+        <td th:text="${movie.rated}"></td>
+        <td th:text="${#dates.format(movie.releaseDateF, 'dd-MMM-yyyy')}"></td>
+        <td th:text="${movie.runTime}"></td>
+        <td th:text="${movie.genre}"></td>
+        <td th:text="${movie.director}"></td>
+        <td th:text="${movie.rating}"></td>
+        <td><a class="btn btn-secondary" th:href="@{/list/book/{id}(id=${movie.id})}">Book</a></td>
+    </tr>
+</table>
+   
+
 </body>
 </html>

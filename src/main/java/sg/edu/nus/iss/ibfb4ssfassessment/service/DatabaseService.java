@@ -1,7 +1,6 @@
 package sg.edu.nus.iss.ibfb4ssfassessment.service;
 
 
-import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Date;
@@ -44,10 +43,6 @@ FileService fileSvc;
          return eventsCount;
     }
 
-    // public Movie getMovie(Integer index) {
-    //     return repo.getMovie(index);
-    // }
-
     // TODO: Task 4 (Map)
     public Movie getMovieById(Integer movieId) {
         String movieStr = moviesRepo.getMovieById(movieId);
@@ -66,19 +61,25 @@ FileService fileSvc;
         for (Map.Entry<String,String> entry : moviesMap.entrySet()) {
             movieListOfStr.add(entry.getValue());
            }
-        
+
         List<Movie> movieList = new ArrayList<>();
 
         for (String movieStr : movieListOfStr) {
-            strToMovie(movieStr);
+            movieList.add(strToMovie(movieStr));
         }
-
+        System.out.println(movieList);
         return movieList;
     }
 
+     // TODO: Task 9 (Add count when booked)
+     public void addCount(Movie movie){
+        int currentCount = movie.getCount();
+        movie.setCount(currentCount+1);
+        moviesRepo.updateMovie(movie.getId(), movie.toString());
+     }
 
     public Movie strToMovie(String movieStr) {
-        System.out.println("from redis" + movieStr);
+        // System.out.println("from redis" + movieStr);
         JsonReader jReader = Json.createReader(new StringReader(movieStr));
         JsonObject e = jReader.readObject();
    

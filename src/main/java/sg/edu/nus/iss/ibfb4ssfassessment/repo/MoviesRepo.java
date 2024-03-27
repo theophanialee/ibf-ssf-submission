@@ -36,11 +36,11 @@ public class MoviesRepo {
         return hashOps.get(Util.KEY_MOVIES, Integer.toString(movieId));
     }
 
-    // // UPDATE a specific record (in Redis Map)
-    // public void updateTodo(String id, String todoStr) {
-    //     hashOps = template.opsForHash();
-    //     hashOps.put(Util.KEY_MOVIES, id, todoStr);
-    // }
+    // UPDATE a specific record (in Redis Map)
+    public void updateMovie(Integer movieId, String movieStr) {
+        hashOps = template.opsForHash();
+        hashOps.put(Util.KEY_MOVIES, Integer.toString(movieId), movieStr);
+    }
 
     // // DELETE operations of a record (in Redis Map)
     // public void deleteTodo(String id) {

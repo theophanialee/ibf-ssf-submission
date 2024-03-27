@@ -11,10 +11,9 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class Login {
-    @Email(message = "Invalid Email format")
-    @Size(max = 50, message = "Email length cannot exceed 50 charracters")
     @NotBlank(message = "Email cannot be empty or blank")
-    @Pattern(regexp = "^(.+)@([^\\.\\s]+\\.[^\\s]+)$", message = "Invalid Email format")
+    @Size(max = 50, message = "Email length cannot exceed 50 charracters")
+    @Pattern(regexp = "^(.+)@([^\\.\\s]+\\.[^\\s]+)$", message = "Email should be <emailname>@<domain_name>")
     private String email;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
